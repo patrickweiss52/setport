@@ -1,0 +1,5 @@
+**ACERCA DE**
+-------------------------------------------------- ------------
+SETPORT: todos los créditos a Patrick Weiss para su implementación.
+Todos los créditos por los derechos de propiedad intelectual al Profesor Wagstaff.
+Todos los derechos reservados 2016.

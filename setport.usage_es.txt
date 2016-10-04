@@ -1,0 +1,9 @@
+
+Uso: {OPCIÓN}... {PUERTO}...
+Escuchar para el puerto especificado; debe estar contenido en el rango 0 < x < 65536
+
+Los argumentos obligatorios para las opciones largas son obligatorios para las opciones cortas también.
+-p, --port abre la cadena para leer en el puerto deseado
+-?,-h,--help muestra el archivo de uso para SETPORT
+-!, --about muestra la información sobre
+-v, --version indica la versión actual de SETPORT
