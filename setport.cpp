@@ -18,7 +18,7 @@ void error();
 void usage();
 void version();
 string getLang();
-void validEnv();
+string validEnv(string str);
 void usingDefaultLang();//helper function for getLang
 
 enum {
@@ -29,6 +29,7 @@ LISTENING
 const string DEFAULT_LANG = "en";
 const int MAX_PORT = 65535; //if port > MAX_PORT : out of range
 const int MAX_ARGS = 4; // Max args from the command line
+
 //Global Variables
 string lang;
 
@@ -235,70 +236,98 @@ void version(){
 };
 
 string getLang(){
-    char* locale;//container for env variable
-    locale = getenv ("LANGUAGE");//setEnv
-    string local(locale);//parse from char* to strin
+    char* envLang;
+    envLang = getenv ("LANGUAGE");
+    string local(envLang);//parse from char* to string
+    //LANGUAGE
     if (local == "" || local == "C" || local == "C.UTF-8"){//If env variable set to these, ignore.
         //TEST:: return lang = "es";
         return lang = DEFAULT_LANG;
     }
-    if (locale == NULL){
-    locale = getenv ("LC_ALL");https://docs.google.com/document/d/1NOqXRTAREuOQ9mfupT2Nj4FvRU2T47nE9sKXOCEg2f4/edit?usp=sharing
-    string local(locale);
-    if (local == "" || local == "C" || local == "C.UTF-8"){
-    return lang = DEFAULT_LANG;
+    //LC_ALL
+    if (envLang == NULL){
+        envLang = getenv ("LC_ALL");
+        string local(envLang);
+        if (local == "" || local == "C" || local == "C.UTF-8"){
+            return lang = DEFAULT_LANG;
+        }
     }
+    //LC_MESSAGES
+    if (envLang == NULL){
+        envLang = getenv ("LC_MESSAGES");
+        string local(envLang);
+        if (local == "" || local == "C" || local == "C.UTF-8"){
+            return lang = DEFAULT_LANG;
+        }
     }
-    if (locale == NULL){
-    locale = getenv ("LC_MESSAGES");
-    string local(locale);
-    if (local == "" || local == "C" || local == "C.UTF-8"){
-    return lang = DEFAULT_LANG;
+    //LANG
+    if (envLang == NULL){
+        envLang = getenv ("LANG");
+        string local(envLang);
+        if (local == "" || local == "C" || local == "C.UTF-8"){
+            return lang = DEFAULT_LANG;
+        }
     }
-    }
-    if (locale == NULL){
-    locale = getenv ("LANG");
-    string local(locale);
-    if (local == "" || local == "C" || local == "C.UTF-8"){
-    return lang = DEFAULT_LANG;
-    }
-}
 
-//FUTURE: string manipulation here
-
-// string sub;
-
-// for(int i=0; i < 5; i++){
-// char c;
-// c = locale[i];
-
-// if (i < 2){
-// if (islower(c)){
-// cout << "lower case: " << c << endl;
-// sub += c;
-// cout << "sub; " << sub << endl;
-// }
-// }
-
-// // if (i = 2 && c == '_'){
-// // cout << locale[2] << endl;
-// // }
-
-// // if (i > 2){
-// // if (isupper(c)){
-// // cout << "upper case: " << c << endl;
-// // }
-// // }
-// }
-
-// if( sub.compare() == "en"){
-// local
-// }
-
-return lang = local;
+    local = validEnv(local);
+    return lang = local;
 };
 
-void validEnv(){
+string validEnv(string envVar){
+    bool correctFormat = false;
+    string tempString;
+    
+    //Case:(en,es)
+    if (envVar.size() == 2){
+        if (islower(envVar[0]) && islower(envVar[1])){
+            correctFormat = true;
+            return envVar;
+        }
+    }
+    
+    //Case(en_US,es_MX,es_AG)
+    if (envVar.size() == 5){
+        if (islower(envVar[0]) && islower(envVar[1])){
+            if (envVar[2] == '_'){
+                if (isupper(envVar[3] && envVar[4])){
+                    correctFormat = true;
+                    return envVar.substr(0,2);
+                }
+            }
+        }
+    }
+    
+    //Case; (en.UTF-8,es.UTF-8)
+     if (envVar.size() == 8){
+        if (islower(envVar[0]) && islower(envVar[1])){
+            tempString = envVar.substr(2,7);
+            if (tempString.compare(".UTF-8") == 0){
+                correctFormat = true;
+                return envVar.substr(0,2);
+            }
+        }
+    }
+    
+    //Case:(en_US.UTF-8,en_UK.UTF-8,es_MX.UTF-8,es_AG.UTF-8)
+    if (envVar.size() == 11){
+        if (islower(envVar[0]) && islower(envVar[1])){
+            if (envVar[2] == '_'){
+                if (isupper(envVar[3]) && isupper(envVar[4])){
+                    tempString = envVar.substr(5,10);
+                    if (tempString.compare(".UTF-8") == 0){
+                        correctFormat = true;
+                        return envVar.substr(0,2);
+                    }
+                }
+            }
+        }
+    }
+    
+    //Invalid Format
+    if (correctFormat == false){
+        cout << "Bad environment variable; Using English.\n\n";
+        return DEFAULT_LANG;
+    }
     
 };
 
