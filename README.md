@@ -44,3 +44,4 @@ Must be done once per BASH session:
   * this will set the MY\_PORT and YOUR\_PORT environmental variables
   * to check that this was done right the following commands can be run:
   * ```printenv | grep MY_PORT``` and ```printenv | grep YOUR_PORT```
+  * Now commands like ```setport -p -e 1234``` will work
