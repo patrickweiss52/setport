@@ -274,40 +274,32 @@ string getLang(){
 };
 
 string validEnv(string envVar){
-    bool correctFormat = false;
     string tempString;
-    
     //Case:(en,es)
     if (envVar.size() == 2){
         if (islower(envVar[0]) && islower(envVar[1])){
-            correctFormat = true;
             return envVar;
         }
     }
-    
     //Case(en_US,es_MX,es_AG)
     if (envVar.size() == 5){
         if (islower(envVar[0]) && islower(envVar[1])){
             if (envVar[2] == '_'){
                 if (isupper(envVar[3] && envVar[4])){
-                    correctFormat = true;
                     return envVar.substr(0,2);
                 }
             }
         }
     }
-    
     //Case; (en.UTF-8,es.UTF-8)
      if (envVar.size() == 8){
         if (islower(envVar[0]) && islower(envVar[1])){
             tempString = envVar.substr(2,7);
             if (tempString.compare(".UTF-8") == 0){
-                correctFormat = true;
                 return envVar.substr(0,2);
             }
         }
     }
-    
     //Case:(en_US.UTF-8,en_UK.UTF-8,es_MX.UTF-8,es_AG.UTF-8)
     if (envVar.size() == 11){
         if (islower(envVar[0]) && islower(envVar[1])){
@@ -315,7 +307,6 @@ string validEnv(string envVar){
                 if (isupper(envVar[3]) && isupper(envVar[4])){
                     tempString = envVar.substr(5,10);
                     if (tempString.compare(".UTF-8") == 0){
-                        correctFormat = true;
                         return envVar.substr(0,2);
                     }
                 }
@@ -323,12 +314,9 @@ string validEnv(string envVar){
         }
     }
     
-    //Invalid Format
-    if (correctFormat == false){
-        cout << "Bad environment variable; Using English.\n\n";
-        return DEFAULT_LANG;
-    }
-    
+    //Default: didn't recognise env Variable
+    cout << "Didn't recognise environment variable; Using English.\n\n";
+    return DEFAULT_LANG;
 };
 
 void usingDefaultLang(){
