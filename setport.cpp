@@ -315,7 +315,7 @@ string validEnv(string envVar){
     }
     
     //Default: didn't recognise env Variable
-    cout << "Didn't recognise environment variable; Using English.\n\n";
+    cout << "\nDidn't recognise environment variable; Using English.\n";
     return DEFAULT_LANG;
 };
 
