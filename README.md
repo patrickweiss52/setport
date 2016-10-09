@@ -40,8 +40,7 @@ Alternitavely, one can create an executable that isn't an object file
 Must be done once per BASH session:
 
 1. run: ```export MY_PORT=123```
-2. run: ```export YOUR_PORT=789```
-  * this will set the MY\_PORT and YOUR\_PORT environmental variables
+  * this will set the MY\_PORT environmental variable
   * to check that this was done right the following commands can be run:
-  * ```printenv | grep MY_PORT``` and ```printenv | grep YOUR_PORT```
-  * Now commands like ```setport -p -e 1234``` will work
+  * ```printenv | grep MY_PORT```
+  * Now commands like ```setport -p -e ``` or ```setport -p -e MY_PORT``` will work

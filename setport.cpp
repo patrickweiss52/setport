@@ -143,20 +143,12 @@ int main(int argc, char *args[]){
             string printenv = "printenv MY_PORT";
             char* printEnv;//container to convert our strings to char* array
             printEnv = (char*)printenv.c_str();//convert our new string back to old stile c-string
-            cout << "MY_PORT is:\t"<<endl;
-            system(printEnv);
-            return 0;
-        }
-        if (argThree.compare("YOUR_PORT") == 0){
-            string printenv = "printenv YOUR_PORT";
-            char* printEnv;//container to convert our strings to char* array
-            printEnv = (char*)printenv.c_str();//convert our new string back to old stile c-string
-            cout << "YOUR_PORT is:\t"<<endl;
+            cout << "MY_PORT\t"<<endl;
             system(printEnv);
             return 0;
         }
         
-        //If they dont give either YOUR_PORT or MY_PORT as args[3]
+        //If they dont give either MY_PORT as args[3] or a valid PORT env variable
         error();
         usage();
         return 1;
