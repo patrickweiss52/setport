@@ -294,7 +294,7 @@ string validEnv(string envVar){
     //Case; (en.UTF-8,es.UTF-8)
      if (envVar.size() == 8){
         if (islower(envVar[0]) && islower(envVar[1])){
-            tempString = envVar.substr(2,7);
+            tempString = envVar.substr(2,6);
             if (tempString.compare(".UTF-8") == 0){
                 return envVar.substr(0,2);
             }
@@ -305,7 +305,7 @@ string validEnv(string envVar){
         if (islower(envVar[0]) && islower(envVar[1])){
             if (envVar[2] == '_'){
                 if (isupper(envVar[3]) && isupper(envVar[4])){
-                    tempString = envVar.substr(5,10);
+                    tempString = envVar.substr(5,6);
                     if (tempString.compare(".UTF-8") == 0){
                         return envVar.substr(0,2);
                     }
