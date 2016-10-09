@@ -4,6 +4,7 @@ Listen for the specified port; must be contained in the range 0 < x < 65536
 
 Mandatory arguments to long options are mandatory for short options too.
 -p, --port opens the stream to read in desired port
+     -e executes printenv PORT
 -?,-h,--help displays the usage file for setport
 -!, --about displays the about information
 -v, --version displays the current version of setport
