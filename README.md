@@ -44,3 +44,6 @@ Must be done once per BASH session:
   * to check that this was done right the following commands can be run:
   * ```printenv | grep MY_PORT```
   * Now commands like ```setport -p -e ``` or ```setport -p -e MY_PORT``` will work
+
+
+###ENJOY!
