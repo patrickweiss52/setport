@@ -2,7 +2,7 @@
 
 ###Set a bash alias
 
-For C9 *(this only needs to be done once)*:
+For C9 *(this only needs to be done once; best to do this in a blank workspace)*:
 
 1. Open a terminal in the workspace
 2. run: ```cd ~```
