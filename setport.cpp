@@ -41,6 +41,7 @@ int main(int argc, char *args[]){
     string line;
     ifstream in("setport.messages_" + lang + ".txt");//open correct language file for couts
     while (!in.eof()){
+        
         getline(in, line);
         in >> line;
         msg.push_back(line);
@@ -123,7 +124,7 @@ int main(int argc, char *args[]){
         }
     }
     
-    //Case #5: Four Args (setport -p -e {int},setport --port -e {int})
+    //Case #5: Four Args (setport -p -e MY_PORT,)
     if (argc == 4){
         string argThree(args[3]);//set args[3] in string container; port
     
@@ -143,7 +144,7 @@ int main(int argc, char *args[]){
             string printenv = "printenv MY_PORT";
             char* printEnv;//container to convert our strings to char* array
             printEnv = (char*)printenv.c_str();//convert our new string back to old stile c-string
-            cout << "MY_PORT\t"<<endl;
+            cout << "printenv MY_PORT\t"<<endl;
             system(printEnv);
             return 0;
         }
