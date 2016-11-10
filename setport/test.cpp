@@ -1,5 +1,5 @@
 /*Patrick Weiss
-SetPort: Change Order 1
+SetPort
 test.cpp
 9/13/16
 I declare that all code contained within this document is either written

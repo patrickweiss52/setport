@@ -3,10 +3,9 @@
 ###Run make
 
 1. Open terminal in the workspace
-2. run: ```make setport```
-3. run: ```make test```
+2. run: ```make```
 
-*note: this will create to executables in the directory: setport and test; test is the 
+*note: this will create two executables in the directory: setport and test; test is the 
 automated program to run each line in tests.txt. More tests can be added to tests.txt,
 however before ./test is run again after adding new tests, save tests.txt.
 
