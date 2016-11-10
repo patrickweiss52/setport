@@ -93,13 +93,13 @@ int main(int argc, char *args[]){
             usage();
             return 1;
         }
-        if (argTwo.compare("-e") == 0){
+        if (argTwo.compare("-e") == 0 || argTwo.compare("--environment") == 0){
             //Here it was necessary to do my own string parsing due to a compiler error in C9
             //because 'char* printEnv = "printenv PORT";' is deprecated and can't be used when doing 'make setport' 
             string printenv = "printenv PORT";
             char* printEnv;//container to convert our strings to char* array
             printEnv = (char*)printenv.c_str();//convert our new string back to old stile c-string
-            cout << "printenv PORT"<<endl;
+            cout << "Listening to port:"<<endl;
             system(printEnv);
             return 0;
         }
@@ -124,7 +124,7 @@ int main(int argc, char *args[]){
         }
     }
     
-    //Case #5: Four Args (setport -p -e MY_PORT,)
+    //Case #5: Four Args (setport -p -e MY_PORT [or BAR])
     if (argc == 4){
         string argThree(args[3]);//set args[3] in string container; port
     
@@ -133,7 +133,7 @@ int main(int argc, char *args[]){
             usage();
             return 1;
         }
-        if (argTwo.compare("-e") != 0){
+        if (argTwo.compare("-e") != 0 && argTwo.compare("--environment") != 0){
             error();
             usage();
             return 1;
@@ -144,7 +144,17 @@ int main(int argc, char *args[]){
             string printenv = "printenv MY_PORT";
             char* printEnv;//container to convert our strings to char* array
             printEnv = (char*)printenv.c_str();//convert our new string back to old stile c-string
-            cout << "printenv MY_PORT\t"<<endl;
+            cout << "Listening to port:\t"<< endl;
+            system(printEnv);
+            return 0;
+        }
+        if (argThree.compare("BAR") == 0){
+            //Here it was necessary to do my own string parsing due to a compiler error in C9
+            //because 'char* printEnv = "printenv MY_PORT";' is deprecated and can't be used when doing 'make setport' 
+            string printenv = "printenv BAR";
+            char* printEnv;//container to convert our strings to char* array
+            printEnv = (char*)printenv.c_str();//convert our new string back to old stile c-string
+            cout << "Listening to port:\t" << endl;
             system(printEnv);
             return 0;
         }

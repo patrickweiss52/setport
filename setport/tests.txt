@@ -22,3 +22,15 @@
 ./setport -p 90642
 ./setport -x 45321
 ./setport -P 714
+./setport -p --environment
+./setport -p --environment 4120
+./setport --port --environment
+./setport --port --env
+./setport -p -e BAR
+./setport -p -e BAR 2525
+./setport --port -e BAR
+./setport --port -e BARS
+./setport -p --environment BAR
+./setport -p --environment -BAR
+./setport --port --environment BAR
+./setport --port --environment 12 BAR
